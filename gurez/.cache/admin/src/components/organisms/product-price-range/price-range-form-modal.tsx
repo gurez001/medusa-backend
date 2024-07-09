@@ -192,7 +192,7 @@ const PriceRangeFormModal: React.FC<Props> = ({
                       onClick={() => handleEdit(i)}
                       size="small"
                       className="mr-2"
-                    >
+                    >           
                       Edit
                     </Button>
                   </div>

@@ -1,19 +1,7 @@
-/dist
 .env
-.DS_Store
 /node_modules
-yarn-error.log
-
-.idea
-
 coverage
-
-
-./tsconfig.tsbuildinfo
-package-lock.json
-yarn.lock
 medusa-db.sql
-build
 
 
 .yarn/*
