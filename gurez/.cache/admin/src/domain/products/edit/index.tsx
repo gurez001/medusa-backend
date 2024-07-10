@@ -5,8 +5,8 @@ import Spinner from "../../../components/atoms/spinner"
 import WidgetContainer from "../../../components/extensions/widget-container"
 import ProductAttributesSection from "../../../components/organisms/product-attributes-section"
 import ProductGeneralSection from "../../../components/organisms/product-general-section"
+import ProductProductPrice from "../../../components/organisms/product-price-range"
 import ProductMediaSection from "../../../components/organisms/product-media-section"
-import ProductPrceRange from "../../../components/organisms/product-price-range"
 import ProductRawSection from "../../../components/organisms/product-raw-section"
 import ProductThumbnailSection from "../../../components/organisms/product-thumbnail-section"
 import ProductVariantsSection from "../../../components/organisms/product-variants-section"
@@ -82,7 +82,7 @@ const Edit = () => {
           <div className="gap-y-xsmall col-span-4 flex flex-col">
             <ProductThumbnailSection product={product} />
             <ProductMediaSection product={product} />
-            <ProductPrceRange product={product} />
+            <ProductProductPrice product={product} />
           </div>
         </div>
       </div>

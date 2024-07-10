@@ -10,6 +10,8 @@ import Button from "../../fundamentals/button";
 import { PlusMini } from "@medusajs/icons";
 import useToggleState from "../../../hooks/use-toggle-state";
 import useNotification from "../../../hooks/use-notification";
+import axios from "axios";
+import { MEDUSA_BACKEND_URL } from "../../../constants/medusa-backend-url";
 
 type Props = {
   product: Product;
@@ -24,6 +26,15 @@ type EditUserModalFormData = {
   qnty_upto: string;
   qnty_price: string;
 };
+
+
+//------------------ call api
+
+
+
+
+
+
 
 const PriceRangeFormModal: React.FC<Props> = ({
   product,
@@ -72,6 +83,28 @@ const PriceRangeFormModal: React.FC<Props> = ({
     });
   };
 
+
+
+  
+const sendDataToBackend = async (data:any) => {
+  try {
+    const response = await axios.get(
+      `${MEDUSA_BACKEND_URL}/store/product`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+console.log(response.data)
+    // Update state based on the response
+    // set_data_rows(response.data);
+  } catch (error) {
+    console.error('Error sending data to backend:', error);
+  }
+};
+
+
   const update = (data: EditUserModalFormData) => {
     const { qnty_upto } = data;
 
@@ -104,7 +137,10 @@ const PriceRangeFormModal: React.FC<Props> = ({
     }
   }, [rows]);
 
-  const onSubmit = (data: EditUserModalFormData) => {};
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    sendDataToBackend(rows)
+  };
   const onReset = () => {
     onClose();
   };
@@ -116,7 +152,7 @@ const PriceRangeFormModal: React.FC<Props> = ({
   };
   return (
     <Modal open={open} handleClose={onReset} isLargeModal>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form >
         <Modal.Body>
           <Modal.Header handleClose={onReset}>
             <span className="inter-xlarge-semibold">
@@ -204,6 +240,7 @@ const PriceRangeFormModal: React.FC<Props> = ({
               <Button
                 // loading={isLoading}
                 // disabled={isLoading}
+                onClick={(e)=>onSubmit(e)}
                 variant="primary"
                 size="small"
               >
